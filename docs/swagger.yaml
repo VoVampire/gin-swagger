@@ -1,0 +1,55 @@
+definitions:
+  gin_router.BaseReq:
+    properties:
+      username:
+        type: string
+    type: object
+  gin_router.BaseResp:
+    properties:
+      data1:
+        type: object
+      data2:
+        $ref: '#/definitions/gin_router.Data'
+        type: object
+      data3:
+        $ref: '#/definitions/gin_router.Data'
+        type: object
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  gin_router.Data:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /ping/{name}:
+    post:
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: age
+        in: query
+        name: age
+        type: integer
+      - description: req param
+        in: body
+        name: req_param
+        required: true
+        schema:
+          $ref: '#/definitions/gin_router.BaseReq'
+          type: object
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin_router.BaseResp'
+swagger: "2.0"

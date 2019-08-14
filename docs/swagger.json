@@ -1,0 +1,86 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/ping/{name}": {
+            "post": {
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "age",
+                        "name": "age",
+                        "in": "query"
+                    },
+                    {
+                        "description": "req param",
+                        "name": "req_param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/gin_router.BaseReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin_router.BaseResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "gin_router.BaseReq": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "gin_router.BaseResp": {
+            "type": "object",
+            "properties": {
+                "data1": {
+                    "type": "object"
+                },
+                "data2": {
+                    "type": "object",
+                    "$ref": "#/definitions/gin_router.Data"
+                },
+                "data3": {
+                    "type": "object",
+                    "$ref": "#/definitions/gin_router.Data"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "gin_router.Data": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
